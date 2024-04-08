@@ -30,9 +30,24 @@ const Pokemon = ({ url }: PokemonProps) => {
         flexGrow: 1,
         columnGap: 5
       }}>
-      <img
-        src={pokemon?.sprites.other['official-artwork'].front_default}
-        style={{ height: 100, width: 100, alignSelf: 'center' }}></img>
+      {pokemon?.sprites.other['official-artwork'].front_default && (
+        <img
+          src={pokemon?.sprites.other['official-artwork'].front_default}
+          style={{ height: 100, width: 100, alignSelf: 'center' }}></img>
+      )}
+      {!pokemon?.sprites.other['official-artwork'].front_default && (
+        <div
+          style={{
+            fontWeight: 'bold',
+            fontSize: 14,
+            textAlign: 'center',
+            minWidth: 100,
+            alignSelf: 'center'
+          }}>
+          No Image
+        </div>
+      )}
+
       <div style={{ alignSelf: 'center' }}>
         <div style={{ fontWeight: 'bold' }}>
           {pokemon?.id} | {pokemon?.name}

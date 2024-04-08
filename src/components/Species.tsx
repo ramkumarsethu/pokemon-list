@@ -8,7 +8,7 @@ const Species = ({ url }: Pick<Pokemon['species'], 'url'>) => {
     const fetchSpecies = async () => {
       const data = await fetch(url);
       const result: Pick<Pokemon, 'flavor_text_entries'> = await data.json();
-      setFlavorText(result.flavor_text_entries[0].flavor_text);
+      setFlavorText(result.flavor_text_entries[0]?.flavor_text);
     };
     fetchSpecies();
   }, []);

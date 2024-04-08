@@ -39,7 +39,7 @@ const PokemonList = () => {
       </div>
       {pokemonUrl && (
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: 40 }}>
-          <a onClick={() => setLoadMoreData(true)} style={{ color: 'blue' }}>
+          <a onClick={() => setLoadMoreData(true)} style={{ color: 'blue', cursor: 'pointer' }}>
             Load more...
           </a>
         </div>
