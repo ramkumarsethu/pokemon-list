@@ -1,15 +1,14 @@
 import React from 'react';
 import { PokemonProps } from '../types/Pokemon';
 import { useGetSpeciesQuery } from '../store/api/apiSlice';
+import Loading from './Loading';
 
 const Species = ({ url }: PokemonProps) => {
   const { data, isFetching } = useGetSpeciesQuery({ url });
   return (
     <>
       {!isFetching && <div>{data?.flavor_text_entries?.[0]?.flavor_text || ''}</div>}
-      {isFetching && (
-        <div style={{ fontStyle: 'italic', fontSize: 12 }}>Loading Description...</div>
-      )}
+      {isFetching && <Loading style={{ minHeight: 5, minWidth: 100, marginTop: 3 }} />}
     </>
   );
 };

@@ -4,7 +4,7 @@ export type Pokemon = {
   sprites: {
     other: {
       ['official-artwork']: {
-        front_default: string;
+        front_default: string | undefined;
       };
     };
   };
