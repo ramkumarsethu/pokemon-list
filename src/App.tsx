@@ -1,9 +1,13 @@
+import { Provider } from 'react-redux';
 import PokemonList from './components/PokemonList';
+import { store } from './store/store';
 
 const App = () => {
   return (
     <>
-      <PokemonList></PokemonList>
+      <Provider store={store}>
+        <PokemonList></PokemonList>
+      </Provider>
     </>
   );
 };
