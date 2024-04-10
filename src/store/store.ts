@@ -1,14 +1,15 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { apiSlice } from './api/apiSlice';
-import { toastSlice } from './slices/ToastSlice';
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import { configureStore } from "@reduxjs/toolkit";
+import { apiSlice } from "./api/apiSlice";
+import { toastSlice } from "./slices/ToastSlice";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 export const store = configureStore({
   reducer: {
     [apiSlice.reducerPath]: apiSlice.reducer,
-    [toastSlice.name]: toastSlice.reducer
+    [toastSlice.name]: toastSlice.reducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware)
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(apiSlice.middleware),
 });
 
 /* 

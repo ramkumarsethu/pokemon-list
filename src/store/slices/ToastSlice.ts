@@ -1,17 +1,17 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialToastMessage = {
-  message: ''
+  message: "",
 };
 
 export const toastSlice = createSlice({
   initialState: initialToastMessage,
-  name: 'toastMessage',
+  name: "toastMessage",
   reducers: {
     setToastMessage: (state, action: { payload: string }) => {
       state.message = action.payload;
-    }
-  }
+    },
+  },
 });
 
 export const { setToastMessage } = toastSlice.actions;

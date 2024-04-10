@@ -1,8 +1,10 @@
-import { useState } from 'react';
-import { Pokemon } from '../types/Pokemon';
-import Loading from './Loading';
+import { useState } from "react";
+import { Pokemon } from "../types/Pokemon";
+import Loading from "./Loading";
 
-const PokemonImage = ({ front_default }: Pokemon['sprites']['other']['official-artwork']) => {
+const PokemonImage = ({
+  front_default,
+}: Pokemon["sprites"]["other"]["official-artwork"]) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   return (
     <>
@@ -10,10 +12,10 @@ const PokemonImage = ({ front_default }: Pokemon['sprites']['other']['official-a
         <img
           src={front_default}
           style={{
-            display: imageLoaded ? 'block' : 'none',
+            display: imageLoaded ? "block" : "none",
             height: 100,
             width: 100,
-            alignSelf: 'center'
+            alignSelf: "center",
           }}
           onLoad={() => setImageLoaded(true)}
         />
@@ -24,12 +26,13 @@ const PokemonImage = ({ front_default }: Pokemon['sprites']['other']['official-a
       {!front_default && (
         <div
           style={{
-            fontWeight: 'bold',
+            fontWeight: "bold",
             fontSize: 14,
-            textAlign: 'center',
+            textAlign: "center",
             minWidth: 100,
-            alignSelf: 'center'
-          }}>
+            alignSelf: "center",
+          }}
+        >
           No Image
         </div>
       )}

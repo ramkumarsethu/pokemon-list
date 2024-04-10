@@ -1,9 +1,9 @@
-import { Provider } from 'react-redux';
-import PokemonList from './components/PokemonList';
-import { store } from './store/store';
-import ToastMessage from './components/Toast';
-import 'bootstrap/dist/css/bootstrap.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Provider } from "react-redux";
+import PokemonList from "./components/PokemonList";
+import { store } from "./store/store";
+import ToastMessage from "./components/Toast";
+import "bootstrap/dist/css/bootstrap.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const App = () => {
   return (

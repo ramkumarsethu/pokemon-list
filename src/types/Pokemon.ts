@@ -1,9 +1,9 @@
 export type Pokemon = {
   name: string;
-  url: string;
+  url?: string;
   sprites: {
     other: {
-      ['official-artwork']: {
+      ["official-artwork"]: {
         front_default: string | undefined;
       };
     };
@@ -20,5 +20,3 @@ export type PokemonListResult = {
   results: Array<Pokemon>;
   next: string;
 };
-
-export type PokemonProps = Pick<Pokemon, 'url'>;
