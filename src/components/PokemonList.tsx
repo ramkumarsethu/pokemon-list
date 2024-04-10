@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useTransition } from 'react';
 import { Pokemon as PokemonType } from '../types/Pokemon';
 import Pokemon from './Pokemon';
 import { useGetPokemonListQuery } from '../store/api/apiSlice';
@@ -13,10 +13,13 @@ const PokemonList = () => {
     { url: pokemonUrl },
     { skip: !loadMoreData }
   );
+  const [_, startTransition] = useTransition();
 
   const handleInfiniteScroll = () => {
     const { clientHeight, scrollTop, scrollHeight } = document.documentElement;
-    setLoadMoreData(!!(pokemonUrl && scrollTop + clientHeight + 200 >= scrollHeight));
+    startTransition(() => {
+      setLoadMoreData(!!(pokemonUrl && scrollTop + clientHeight + 200 >= scrollHeight));
+    });
   };
 
   useEffect(() => {
@@ -36,7 +39,7 @@ const PokemonList = () => {
     <>
       <div style={{ display: 'flex', flexWrap: 'wrap', padding: 20 }}>
         {pokemonList.map((pokemon) => (
-          <Pokemon url={pokemon.url} key={pokemon.name}></Pokemon>
+          <Pokemon id={pokemon.name} key={pokemon.name}></Pokemon>
         ))}
       </div>
       {/* This load more option is really useful for the initial data set and is manually required to click to get the next set of data when the initial load of data is rendered well within the viewport without much scroll movement on larger screens */}

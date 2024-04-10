@@ -8,7 +8,19 @@ import {
 import { Pokemon, PokemonListResult, PokemonProps } from '../../types/Pokemon';
 import { setToastMessage } from '../slices/ToastSlice';
 
-const baseQuery = fetchBaseQuery({});
+export type QueryReturnValue<T = unknown, E = unknown, M = unknown> =
+  | {
+      error: E;
+      data?: undefined;
+      meta?: M;
+    }
+  | {
+      error?: undefined;
+      data: T;
+      meta?: M;
+    };
+
+const baseQuery = fetchBaseQuery({ baseUrl: 'https://pokeapi.co/api/v2' });
 const customBaseQuery: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError> = async (
   args,
   api,
@@ -27,13 +39,16 @@ export const apiSlice = createApi({
   baseQuery: customBaseQuery,
   endpoints: (builder) => ({
     getPokemonList: builder.query<PokemonListResult, PokemonProps>({
-      query: ({ url }) => `${url}`
+      queryFn: async (args, _api, _extraOptions, baseQuery) => {
+        const result = await baseQuery(args);
+        return result as QueryReturnValue<PokemonListResult, FetchBaseQueryError, {}>;
+      }
     }),
-    getPokemon: builder.query<Pokemon, PokemonProps>({
-      query: ({ url }) => url
+    getPokemon: builder.query<Pokemon, { id: string | undefined }>({
+      query: ({ id }) => `pokemon/${id}`
     }),
-    getSpecies: builder.query<Pick<Pokemon, 'flavor_text_entries'>, PokemonProps>({
-      query: ({ url }) => url
+    getSpecies: builder.query<Pick<Pokemon, 'flavor_text_entries'>, { id: string }>({
+      query: ({ id }) => `pokemon-species/${id}`
     })
   })
 });
