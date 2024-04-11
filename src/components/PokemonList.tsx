@@ -51,7 +51,7 @@ const PokemonList = () => {
         >
           <a
             onClick={() => setLoadMoreData(true)}
-            style={{ color: "blue", cursor: "pointer" }}
+            style={{ color: "#c8e2ff", cursor: "pointer" }}
           >
             Load more...
           </a>

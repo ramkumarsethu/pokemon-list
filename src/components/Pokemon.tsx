@@ -7,6 +7,7 @@ import Loading from "./Loading";
 const CardStyle: CSSProperties = {
   padding: 5,
   border: "1px solid",
+  borderRadius: 10,
   margin: 5,
   display: "flex",
   boxSizing: "border-box",
@@ -14,6 +15,7 @@ const CardStyle: CSSProperties = {
   flexGrow: 1,
   columnGap: 5,
   minHeight: 100,
+  backgroundColor: "#ffffff",
 };
 
 const Pokemon = ({ id }: { id: string }) => {
