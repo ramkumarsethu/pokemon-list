@@ -8,7 +8,7 @@ const CardStyle: CSSProperties = {
   padding: 5,
   border: "1px solid",
   borderRadius: 10,
-  margin: 5,
+  margin: 2,
   display: "flex",
   boxSizing: "border-box",
   flexBasis: 300,
