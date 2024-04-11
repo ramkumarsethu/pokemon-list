@@ -29,7 +29,7 @@ const Pokemon = ({ id }: { id: string }) => {
             }
           />
 
-          <div style={{ alignSelf: "center" }}>
+          <div style={{ alignSelf: "center", width: "100%", padding: 5 }}>
             {!isFetching && (
               <div style={{ fontWeight: "bold" }}>
                 {pokemon?.id} | {pokemon?.name}
