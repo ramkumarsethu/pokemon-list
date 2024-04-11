@@ -35,7 +35,13 @@ const Pokemon = ({ id }: { id: string }) => {
                 {pokemon?.id} | {pokemon?.name}
               </div>
             )}
-            {isFetching && <Loading />}
+            {isFetching && (
+              <>
+                {[...Array(5).keys()].map((e) => (
+                  <Loading key={e} style={{ marginTop: 5 }} />
+                ))}
+              </>
+            )}
             <div style={{ fontStyle: "italic", fontSize: 13, marginTop: 2 }}>
               {pokemon?.species.url && (
                 <Species id={pokemon.species.name}></Species>

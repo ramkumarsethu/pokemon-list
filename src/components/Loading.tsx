@@ -6,7 +6,7 @@ const defaultStyle: CSSProperties = {
   marginTop: 3,
 };
 const Loading = ({ style }: { style?: CSSProperties }) => {
-  return <div className="loading" style={{ ...(style || defaultStyle) }}></div>;
+  return <div className="loading" style={{ ...defaultStyle, ...style }}></div>;
 };
 
 export default Loading;

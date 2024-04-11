@@ -9,7 +9,13 @@ const Species = ({ id }: { id: string }) => {
       {!isFetching && (
         <div>{data?.flavor_text_entries?.[0]?.flavor_text || ""}</div>
       )}
-      {isFetching && <Loading />}
+      {isFetching && (
+        <>
+          {[...Array(4).keys()].map((e) => (
+            <Loading key={e} style={{ marginTop: 5 }} />
+          ))}
+        </>
+      )}
     </>
   );
 };
