@@ -10,7 +10,7 @@ const CardStyle: CSSProperties = {
   margin: 5,
   display: "flex",
   boxSizing: "border-box",
-  flexBasis: 250,
+  flexBasis: 300,
   flexGrow: 1,
   columnGap: 5,
   minHeight: 100,
@@ -29,7 +29,13 @@ const Pokemon = ({ id }: { id: string }) => {
             }
           />
 
-          <div style={{ alignSelf: "center", overflowWrap: "anywhere"}}>
+          <div
+            style={{
+              alignSelf: "center",
+              overflowWrap: "anywhere",
+              width: "100%",
+            }}
+          >
             {!isFetching && (
               <div style={{ fontWeight: "bold" }}>
                 {pokemon?.id} | {pokemon?.name}

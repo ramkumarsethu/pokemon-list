@@ -11,7 +11,7 @@ const PokemonList = () => {
   );
   const { data, isError, isFetching } = useGetPokemonListQuery(
     { url: pokemonUrl },
-    { skip: !loadMoreData },
+    { skip: !loadMoreData || !pokemonUrl },
   );
   const [_, startTransition] = useTransition();
 
