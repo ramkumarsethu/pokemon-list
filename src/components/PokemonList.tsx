@@ -66,6 +66,9 @@ const PokemonList = () => {
           paddingLeft: 15,
           paddingRight: 15,
           fontSize: 14,
+          position: "sticky",
+          top: 0,
+          backgroundColor: "#4873bb",
         }}
       >
         {Object.values(CardType).map((e) => (
