@@ -64,8 +64,8 @@ const PokemonList = () => {
           color: "white",
           paddingTop: 10,
           paddingLeft: 15,
+          paddingRight: 15,
           fontSize: 14,
-          justifyContent: "center",
         }}
       >
         {Object.values(CardType).map((e) => (
