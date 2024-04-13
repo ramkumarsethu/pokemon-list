@@ -1,7 +1,20 @@
-import { useEffect, useState, useTransition } from "react";
+import {
+  Fragment,
+  useCallback,
+  useEffect,
+  useState,
+  useTransition,
+} from "react";
 import { Pokemon as PokemonType } from "../types/Pokemon";
-import Pokemon from "./Pokemon";
 import { useGetPokemonListQuery } from "../store/api/apiSlice";
+import PokemonLarge from "./PokemonLarge";
+import Pokemon from "./Pokemon";
+import { Form } from "react-bootstrap";
+
+enum CardType {
+  LARGE_CARDS = "Large cards",
+  SMALL_CARDS = "Small cards",
+}
 
 const PokemonList = () => {
   const [pokemonList, setPokemonList] = useState<Array<PokemonType>>([]);
@@ -14,12 +27,13 @@ const PokemonList = () => {
     { skip: !loadMoreData || !pokemonUrl },
   );
   const [_, startTransition] = useTransition();
+  const [cardType, setCardType] = useState<CardType>(CardType.LARGE_CARDS);
 
   const handleInfiniteScroll = () => {
     const { clientHeight, scrollTop, scrollHeight } = document.documentElement;
     startTransition(() => {
       setLoadMoreData(
-        !!(pokemonUrl && scrollTop + clientHeight + 200 >= scrollHeight),
+        !!(pokemonUrl && scrollTop + clientHeight + 250 >= scrollHeight),
       );
     });
   };
@@ -37,11 +51,47 @@ const PokemonList = () => {
     return () => window.removeEventListener("scroll", handleInfiniteScroll);
   }, []);
 
+  const toggleCardType = useCallback((cardType: CardType) => {
+    setCardType(cardType);
+  }, []);
+
   return (
-    <>
-      <div style={{ display: "flex", flexWrap: "wrap", padding: 20 }}>
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <Form
+        style={{
+          display: "flex",
+          columnGap: 10,
+          color: "white",
+          paddingTop: 10,
+          paddingLeft: 15,
+          fontSize: 14,
+          justifyContent: "center",
+        }}
+      >
+        {Object.values(CardType).map((e) => (
+          <Form.Check
+            key={e}
+            type="radio"
+            name="card-type"
+            label={e}
+            value={e}
+            defaultChecked={cardType === e}
+            onClick={(event) =>
+              toggleCardType(event.currentTarget.value as CardType)
+            }
+          />
+        ))}
+      </Form>
+      <div style={{ display: "flex", flexWrap: "wrap", padding: "0px 10px" }}>
         {pokemonList.map((pokemon) => (
-          <Pokemon id={pokemon.name} key={pokemon.name}></Pokemon>
+          <Fragment key={pokemon.name}>
+            {CardType.LARGE_CARDS === cardType && (
+              <PokemonLarge id={pokemon.name} key={pokemon.name} />
+            )}
+            {CardType.SMALL_CARDS === cardType && (
+              <Pokemon id={pokemon.name} key={pokemon.name} />
+            )}
+          </Fragment>
         ))}
       </div>
       {/* This load more option is really useful for the initial data set and is manually required to click to get the next set of data when the initial load of data is rendered well within the viewport without much scroll movement on larger screens */}
@@ -51,13 +101,13 @@ const PokemonList = () => {
         >
           <a
             onClick={() => setLoadMoreData(true)}
-            style={{ color: "#c8e2ff", cursor: "pointer" }}
+            style={{ color: "#ffffff", cursor: "pointer" }}
           >
             Load more...
           </a>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

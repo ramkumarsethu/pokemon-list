@@ -17,5 +17,10 @@
 }
 
 body {
-  background-color: #282828;
+  background-color: #4873bb;
+}
+
+input[type="radio"]:checked {
+  background-color: #3d5981;
+  border-color: #ffffff;
 }
