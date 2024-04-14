@@ -16,6 +16,11 @@ enum CardType {
   SMALL_CARDS = "Small cards",
 }
 
+/**
+ * additional height that is added to scroll position check when comparing the scrollHeight to determine when to eager fetch the next batch of pokemons
+ */
+const scrollPositionAppender = 500;
+
 const PokemonList = () => {
   const [pokemonList, setPokemonList] = useState<Array<PokemonType>>([]);
   const [loadMoreData, setLoadMoreData] = useState(true);
@@ -33,7 +38,10 @@ const PokemonList = () => {
     const { clientHeight, scrollTop, scrollHeight } = document.documentElement;
     startTransition(() => {
       setLoadMoreData(
-        !!(pokemonUrl && scrollTop + clientHeight + 250 >= scrollHeight),
+        !!(
+          pokemonUrl &&
+          scrollTop + clientHeight + scrollPositionAppender >= scrollHeight
+        ),
       );
     });
   };
