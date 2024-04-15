@@ -60,8 +60,6 @@ const PokemonList = () => {
   }, []);
 
   const toggleCardType = useCallback((cardType: CardType) => {
-    setPokemonList([]);
-    setPokemonUrl(POKEMON_URL);
     setCardType(cardType);
   }, []);
 
