@@ -19,14 +19,14 @@ enum CardType {
 /**
  * additional height that is added to scroll position check when comparing the scrollHeight to determine when to eager fetch the next batch of pokemons
  */
-const scrollPositionAppender = 500;
+const SCROLL_POSITION_APPENDER = 500;
+
+const POKEMON_URL = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=20";
 
 const PokemonList = () => {
   const [pokemonList, setPokemonList] = useState<Array<PokemonType>>([]);
   const [loadMoreData, setLoadMoreData] = useState(true);
-  const [pokemonUrl, setPokemonUrl] = useState(
-    "https://pokeapi.co/api/v2/pokemon?offset=0&limit=20",
-  );
+  const [pokemonUrl, setPokemonUrl] = useState(POKEMON_URL);
   const { data, isError, isFetching } = useGetPokemonListQuery(
     { url: pokemonUrl },
     { skip: !loadMoreData || !pokemonUrl },
@@ -40,7 +40,7 @@ const PokemonList = () => {
       setLoadMoreData(
         !!(
           pokemonUrl &&
-          scrollTop + clientHeight + scrollPositionAppender >= scrollHeight
+          scrollTop + clientHeight + SCROLL_POSITION_APPENDER >= scrollHeight
         ),
       );
     });
@@ -60,6 +60,8 @@ const PokemonList = () => {
   }, []);
 
   const toggleCardType = useCallback((cardType: CardType) => {
+    setPokemonList([]);
+    setPokemonUrl(POKEMON_URL);
     setCardType(cardType);
   }, []);
 
@@ -77,6 +79,7 @@ const PokemonList = () => {
           position: "sticky",
           top: 0,
           backgroundColor: "#4873bb",
+          justifyContent: "end",
         }}
       >
         {Object.values(CardType).map((e) => (
