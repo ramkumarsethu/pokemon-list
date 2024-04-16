@@ -9,7 +9,7 @@ import { Pokemon as PokemonType } from "../types/Pokemon";
 import { useGetPokemonListQuery } from "../store/api/apiSlice";
 import PokemonLarge from "./PokemonLarge";
 import Pokemon from "./Pokemon";
-import { Form } from "react-bootstrap";
+import { Form, Spinner } from "react-bootstrap";
 
 enum CardType {
   LARGE_CARDS = "Large cards",
@@ -106,6 +106,23 @@ const PokemonList = () => {
           </Fragment>
         ))}
       </div>
+      {/* loading spinner for initial display */}
+      {pokemonList.length === 0 && isFetching && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+          }}
+        >
+          <Spinner
+            animation="border"
+            variant="info"
+            style={{ height: 100, width: 100 }}
+          />
+        </div>
+      )}
       {/* This load more option is really useful for the initial data set and is manually required to click to get the next set of data when the initial load of data is rendered well within the viewport without much scroll movement on larger screens */}
       {pokemonUrl && !isFetching && !isError && (
         <div
