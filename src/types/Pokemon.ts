@@ -20,3 +20,8 @@ export type PokemonListResult = {
   results: Array<Pokemon>;
   next: string;
 };
+
+export enum CardType {
+  LARGE_CARDS = "Large cards",
+  SMALL_CARDS = "Small cards",
+}
