@@ -12,7 +12,7 @@ const POKEMON_URL = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=20";
 
 type PokemonListProps = {
   /** This is a render prop function that renders Large Card or Small Card based on the Card Type selected in the Parent Container */
-  render: (pokemon: PokemonType[]) => JSX.Element;
+  render: (pokemonList: PokemonType[]) => JSX.Element;
 };
 
 /**
