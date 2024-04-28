@@ -1,3 +1,7 @@
+:root {
+  --background-color: #384d71;
+}
+
 .loading {
   background-color: rgba(120, 137, 200, 0.389);
   border-radius: 3px;
@@ -17,10 +21,10 @@
 }
 
 body {
-  background-color: #4873bb;
+  background-color: var(--background-color);
 }
 
 input[type="radio"]:checked {
-  background-color: #3d5981;
+  background-color: var(--background-color);
   border-color: #ffffff;
 }

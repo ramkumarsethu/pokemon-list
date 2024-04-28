@@ -22,9 +22,10 @@ const PokemonContainer = () => {
           paddingLeft: 15,
           paddingRight: 15,
           fontSize: 14,
+          fontFamily: "sans-serif",
           position: "sticky",
           top: 0,
-          backgroundColor: "#4873bb",
+          backgroundColor: "var(--background-color)",
           justifyContent: "end",
         }}
       >
